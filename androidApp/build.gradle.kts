@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ktfmt)
 }
 
 kotlin {
@@ -19,6 +20,8 @@ kotlin {
         implementation(libs.androidx.activity.compose)
     }
 }
+
+ktfmt { kotlinLangStyle() }
 
 android {
     namespace = "com.hanitacm.mymoviescmp"
@@ -46,4 +49,3 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-

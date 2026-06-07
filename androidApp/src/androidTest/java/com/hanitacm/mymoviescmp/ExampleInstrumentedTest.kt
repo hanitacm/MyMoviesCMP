@@ -5,12 +5,12 @@ package com.hanitacm.mymoviescmp
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-//@RunWith(AndroidJUnit4::class)
+// @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-//    @Test
-//    fun useAppContext() {
-//        // Context of the app under test.
-//        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-//        assertEquals("com.hanitacm.androidapp", appContext.packageName)
-//    }
+    //    @Test
+    //    fun useAppContext() {
+    //        // Context of the app under test.
+    //        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+    //        assertEquals("com.hanitacm.androidapp", appContext.packageName)
+    //    }
 }

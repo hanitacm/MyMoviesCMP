@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ktfmt)
 }
 
 kotlin {
@@ -16,6 +17,8 @@ kotlin {
     }
 }
 
+ktfmt { kotlinLangStyle() }
+
 compose.desktop {
     application {
         mainClass = "com.hanitacm.mymoviescmp.MainKt"
@@ -27,4 +30,3 @@ compose.desktop {
         }
     }
 }
-
