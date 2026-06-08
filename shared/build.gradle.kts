@@ -16,21 +16,14 @@ kotlin {
         namespace = "com.hanitacm.mymoviescmp.shared"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_11
-        }
+        compilerOptions { jvmTarget = JvmTarget.JVM_11 }
 
-        androidResources {
-            enable = true
-        }
+        androidResources { enable = true }
     }
 
     jvm()
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
+    listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
@@ -48,8 +41,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
+        commonTest.dependencies { implementation(libs.kotlin.test) }
     }
 }
