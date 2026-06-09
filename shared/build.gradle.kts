@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -6,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.koinCompiler)
     alias(libs.plugins.ktfmt)
 }
 
@@ -21,7 +23,10 @@ kotlin {
         androidResources { enable = true }
     }
 
-    jvm()
+    jvm {
+        attributes.attribute(KotlinPlatformType.attribute, KotlinPlatformType.jvm)
+        compilerOptions { jvmTarget = JvmTarget.JVM_11 }
+    }
 
     listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
         iosTarget.binaries.framework {
@@ -43,9 +48,18 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.logging)
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.napier)
         }
-        androidMain.dependencies { implementation(libs.ktor.client.okhttp) }
+        androidMain.dependencies {
+            api(libs.koin.android)
+            implementation(libs.ktor.client.okhttp)
+        }
         iosMain.dependencies { implementation(libs.ktor.client.darwin) }
-        commonTest.dependencies { implementation(libs.kotlin.test) }
+        commonTest.dependencies {
+            implementation(libs.koin.test)
+            implementation(libs.kotlin.test)
+        }
     }
 }
