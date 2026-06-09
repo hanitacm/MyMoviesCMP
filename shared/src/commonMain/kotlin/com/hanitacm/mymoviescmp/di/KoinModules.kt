@@ -1,5 +1,9 @@
 package com.hanitacm.mymoviescmp.di
 
+import com.hanitacm.mymoviescmp.data.datasource.api.MoviesApi
+import com.hanitacm.mymoviescmp.data.repository.MoviesRepository
+import com.hanitacm.mymoviescmp.data.repository.MoviesRepositoryImpl
+import com.hanitacm.mymoviescmp.data.repository.NetworkDataSource
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
@@ -38,4 +42,8 @@ val dataModule = module {
             }
             .also { Napier.base(DebugAntilog()) }
     }
+
+    single<NetworkDataSource> { MoviesApi(get()) }
+
+    single<MoviesRepository> { MoviesRepositoryImpl(get()) }
 }

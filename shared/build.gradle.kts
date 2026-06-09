@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.koinCompiler)
     alias(libs.plugins.ktfmt)
+    alias(libs.plugins.mokkery)
 }
 
 ktfmt { kotlinLangStyle() }
@@ -60,6 +61,7 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.koin.test)
             implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
         }
     }
 }
