@@ -9,5 +9,6 @@ fun initKoin(config: KoinAppDeclaration? = null): KoinApplication {
     return startKoin {
         includes(config)
         modules(dataModule)
+        modules(viewModelModule)
     }
 }

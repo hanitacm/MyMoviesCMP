@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.koinCompiler)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ktfmt)
     alias(libs.plugins.mokkery)
 }
@@ -38,6 +39,8 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -46,17 +49,16 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.kotlinx.serialization.json)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.logging)
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
+            implementation(libs.koin.compose.viewmodel)
             implementation(libs.napier)
         }
-        androidMain.dependencies {
-            api(libs.koin.android)
-            implementation(libs.ktor.client.okhttp)
-        }
+        androidMain.dependencies { implementation(libs.ktor.client.okhttp) }
         iosMain.dependencies { implementation(libs.ktor.client.darwin) }
         commonTest.dependencies {
             implementation(libs.koin.test)
@@ -65,3 +67,5 @@ kotlin {
         }
     }
 }
+
+dependencies { androidRuntimeClasspath(libs.compose.uiTooling) }

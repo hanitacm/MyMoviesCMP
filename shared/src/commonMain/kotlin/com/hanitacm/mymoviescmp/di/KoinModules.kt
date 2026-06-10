@@ -4,6 +4,7 @@ import com.hanitacm.mymoviescmp.data.datasource.api.MoviesApi
 import com.hanitacm.mymoviescmp.data.repository.MoviesRepository
 import com.hanitacm.mymoviescmp.data.repository.MoviesRepositoryImpl
 import com.hanitacm.mymoviescmp.data.repository.NetworkDataSource
+import com.hanitacm.mymoviescmp.screens.MainViewModel
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
@@ -47,3 +48,5 @@ val dataModule = module {
 
     single<MoviesRepository> { MoviesRepositoryImpl(get()) }
 }
+
+val viewModelModule = module { factory { MainViewModel(get()) } }
